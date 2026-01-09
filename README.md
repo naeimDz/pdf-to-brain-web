@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 PDF-to-Brain (SOTA Edition)
 
-## Getting Started
+**Turn your document library into an intelligent, self-aware "Second Brain".**
 
-First, run the development server:
+This project is a sophisticated **RAG (Retrieval-Augmented Generation)** system built with Next.js and Gemini. It goes beyond simple file chatting by implementing a **"Million-Dollar" Hybrid Search Architecture** entirely locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ The "Brain" Architecture (SOTA)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The system uses a 4-Layer Cognitive Engine to answer questions:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Layer | Component | Function | Cost |
+| :--- | :--- | :--- | :--- |
+| **Layer 1** | **⚡ Knowledge Cache** | Remembers previous Q&A. Answers instantly (0.1s). | **Zero** |
+| **Layer 1.5** | **👤 Intent Engine** | Detects "personal" questions (e.g., *"What do you think of me?"*) and targets your CV/Resume automatically. | Low |
+| **Layer 2** | **🔍 Hybrid Search** | Fuses **Vector Search** (Semantic) + **Keyword Search** (Exact) for perfect retrieval. | Medium |
+| **Layer 2.5** | **🧠 Query Expansion** | Uses AI to generate synonyms and map loose terms to actual filenames (Context-Aware). | Medium |
+| **Layer 3** | **🗣️ Synthesis** | "The Strict Librarian" Persona (Gemini) answers using ONLY the retrieved facts. | High |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Key Features
 
-## Learn More
+*   **Zero-Database Dependency**: Uses **SQLite** + **In-Process Vector Store**. No Pinecone/Postgres required.
+*   **Auto-Learning**: Answers are saved to `knowledge_neurons` for future instant recall.
+*   **Smart Ingestion**: 
+    *   **OCR**: Detects scanned PDFs automatically.
+    *   **Auto-Embeddings**: Generates vectors (`text-embedding-004`) for every file upon upload.
+*   **"Ask Brain"**: A unified chat interface that queries your *entire* library at once.
+*   **Data Persistence**: Jobs, chunks, and metadata are stored persistently in SQLite.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*   **Framework**: Next.js 14 (App Router)
+*   **AI Provider**: Google Gemini (`gemini-1.5-flash` + `text-embedding-004`)
+*   **Database**: SQLite (via `better-sqlite3`)
+*   **ORM**: Drizzle ORM
+*   **Vector Search**: Local Cosine Similarity (Node.js)
+*   **Styling**: Tailwind CSS + Glassmorphism UI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Getting Started
 
-## Deploy on Vercel
+1.  **Clone & Install**:
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2.  **Environment Setup** (`.env.local`):
+    ```env
+    GEMINI_API_KEY=your_key_here
+    GEMINI_MODEL=gemini-1.5-flash
+    DATABASE_URL=sqlite.db
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  **Run Migrations**:
+    ```bash
+    npx drizzle-kit push
+    ```
+
+4.  **Start the Brain**:
+    ```bash
+    npm run dev
+    ```
+
+## 🔧 Admin Tools
+
+*   **Backfill Embeddings** (for old files):
+    `POST /api/admin/embeddings/backfill`
+
+---
+*Built with ❤️ and High-Performance Engineering.*

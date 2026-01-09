@@ -1,0 +1,18 @@
+# 🔑 API Keys Configuration
+# COPY content of this file to a new file named '.env.local'
+
+# 1. Gemini API (Required for AI Summaries & Q/A)
+# Get it here: https://makersuite.google.com/app/apikey
+GEMINI_API_KEY=
+# Model name (changes frequently! Check: https://ai.google.dev/models/gemini)
+GEMINI_MODEL=gemini-2.0-flash-exp
+
+# 2. Jules API (Optional - for advanced normalization)
+# If empty, the app uses standard text extraction
+JULES_API_KEY=
+JULES_API_ENDPOINT=https://jules.googleapis.com/v1
+
+# 3. OCR (Optional - handled locally by default)
+# Google Vision is clearer for Arabic but costs money. Tesseract is free.
+# OCR_PROVIDER=google-vision
+# GOOGLE_VISION_API_KEY=
