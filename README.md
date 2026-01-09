@@ -58,11 +58,3 @@ The system uses a 4-Layer Cognitive Engine to answer questions:
     ```bash
     npm run dev
     ```
-
-## 🔧 Admin Tools
-
-*   **Backfill Embeddings** (for old files):
-    `POST /api/admin/embeddings/backfill`
-
----
-*Built with ❤️ and High-Performance Engineering.*
